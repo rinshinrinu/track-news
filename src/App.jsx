@@ -438,14 +438,14 @@ export default function App() {
           border-bottom-color: white;
         }
 
-        /* Home Page Layout - Adjusted to safer 2fr 1fr and added min-width fix */
+        /* Home Page Layout - ADJUSTED RATIO for better sidebar structure */
         .home-page {
           max-width: 1400px;
           margin: 0 auto;
           padding: 30px 20px;
           display: grid;
-          /* Reverted to 2fr 1fr for stability, ensuring Main Content is wider */
-          grid-template-columns: 2fr 1fr;
+          /* UPDATED: Changed grid to 3fr 2fr for better balance */
+          grid-template-columns: 3fr 2fr;
           gap: 30px;
         }
 
@@ -473,10 +473,11 @@ export default function App() {
           overflow: hidden;
         }
 
-        /* Featured Image - Focus Top, Reduced Height */
+        /* Featured Image - Focus Top, Fine-tuned Height */
         .featured-card img {
           width: 100%;
-          height: 350px; 
+          /* UPDATED: Fine-tuned height for better match with sidebar */
+          height: 320px; 
           object-fit: cover;
           object-position: top;
           transition: all 0.3s ease;
@@ -563,9 +564,10 @@ export default function App() {
             border-radius: 4px;
         }
 
-        /* Horizontal Story Card */
+        /* Horizontal Story Card - ENLARGED WIDTH */
         .horizontal-card {
-          flex: 0 0 300px; 
+          /* UPDATED: Increased width for prominence */
+          flex: 0 0 380px; 
           background: #fff;
           border-radius: 8px;
           overflow: hidden;
@@ -594,9 +596,10 @@ export default function App() {
           margin: 10px 0;
         }
 
-        /* Video Card */
+        /* Video Card - ENLARGED WIDTH */
         .video-card {
-          flex: 0 0 320px; 
+          /* UPDATED: Increased width for prominence */
+          flex: 0 0 400px; 
           background: #fff;
           border-radius: 8px;
           overflow: hidden;
@@ -615,6 +618,9 @@ export default function App() {
 
         /* Sidebar */
         .sidebar {
+          /* Added border to visually separate from main content */
+          border-left: 1px solid #e0e0e0; 
+          padding-left: 30px;
           display: flex;
           flex-direction: column;
           gap: 25px;
@@ -639,9 +645,12 @@ export default function App() {
           background: #f9f9f9;
           border-radius: 8px;
           overflow: hidden;
-          margin-bottom: 15px;
+          /* UPDATED: Removed margin-bottom to make sure it acts as a continuous block */
+          margin-bottom: 0; 
           cursor: pointer;
           transition: transform 0.3s ease;
+          /* Added height property for structure */
+          height: 100%;
         }
 
         .sidebar-card:last-child {
@@ -652,10 +661,11 @@ export default function App() {
           transform: translateX(5px);
         }
 
-        /* Sidebar Image - Focus Top */
+        /* Sidebar Image - Focus Top, ENLARGED HEIGHT */
         .sidebar-card img {
           width: 100%;
-          height: 150px;
+          /* UPDATED: Increased height to match featured card image (320px) */
+          height: 320px; 
           object-fit: cover;
           object-position: top;
         }
@@ -873,6 +883,11 @@ export default function App() {
           .featured-card img {
             height: 300px;
           }
+          
+          /* Adjust sidebar card height for mobile/tablet */
+          .sidebar-card img {
+             height: 180px; 
+          }
         }
 
         @media (max-width: 768px) {
@@ -946,7 +961,7 @@ export default function App() {
           .article-page h1 {
             font-size: 24px;
           }
-        }`}</style>
+        }}`}</style>
 
       <Header setCurrentPage={setCurrentPage} />
       <NavBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
