@@ -42,12 +42,12 @@ const Header = ({ setCurrentPage }) => (
   </div>
 );
 
-// Home Page Component
+// ⭐️ REFACTORED HOME PAGE COMPONENT: Uses Main and Sidebar columns
 const HomePage = ({ setCurrentPage }) => {
   return (
     <div id="home-page" className="page-content active">
       
-      {/* ⭐️ NEW: MAIN COLUMN (70% Width on Desktop) */}
+      {/* ⭐️ MAIN COLUMN: Featured Story + Video Section (70% Width) */}
       <div className="main-column">
         
         {/* Main Featured News */}
@@ -63,7 +63,7 @@ const HomePage = ({ setCurrentPage }) => {
           </div>
         </div>
 
-        {/* Video Section (Stays below Main Featured News) */}
+        {/* Video Section */}
         <div className="video-scroll-section">
           <h2>🎬 Video Previews</h2>
           <div className="video-scroll-container">
@@ -83,10 +83,10 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
       </div>
       
-      {/* ⭐️ NEW: SIDEBAR COLUMN (30% Width on Desktop) */}
+      {/* ⭐️ SIDEBAR COLUMN: Secondary + Other News (30% Width) */}
       <div className="sidebar-column">
         
-        {/* Secondary News Row (Now stacked vertically by CSS) */}
+        {/* Secondary News Row (Stacked vertically by CSS in sidebar) */}
         <div className="secondary-news-row">
           <div className="secondary-news-card" onClick={() => setCurrentPage('politics-article')}>
             <img 
@@ -113,7 +113,7 @@ const HomePage = ({ setCurrentPage }) => {
           </div>
         </div>
 
-        {/* Other News Grid (Now a single card in the sidebar) */}
+        {/* Other News Grid (Single Card in Sidebar) */}
         <div className="other-news-grid">
           <div className="other-news-card" onClick={() => setCurrentPage('fashion-article')}>
             <img 
@@ -132,7 +132,7 @@ const HomePage = ({ setCurrentPage }) => {
   );
 };
 
-// Politics Category Page (Unchanged)
+// Politics Category Page
 const PoliticsPage = () => (
   <div className="page-content active">
     <h2>🇮🇳 Politics Category</h2>
@@ -140,7 +140,7 @@ const PoliticsPage = () => (
   </div>
 );
 
-// Politics Article Page (Unchanged)
+// Politics Article Page
 const PoliticsArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
@@ -159,7 +159,7 @@ const PoliticsArticle = ({ setCurrentPage }) => (
   </div>
 );
 
-// Sports Category Page (Unchanged)
+// Sports Category Page
 const SportsPage = () => (
   <div className="page-content active">
     <h2>🏏 Sports Category</h2>
@@ -167,7 +167,7 @@ const SportsPage = () => (
   </div>
 );
 
-// Sports Article Page (Unchanged)
+// Sports Article Page
 const SportsArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
@@ -187,7 +187,7 @@ const SportsArticle = ({ setCurrentPage }) => (
   </div>
 );
 
-// Education Category Page (Unchanged)
+// Education Category Page
 const EducationPage = () => (
   <div className="page-content active">
     <h2>📚 Education Category</h2>
@@ -195,7 +195,7 @@ const EducationPage = () => (
   </div>
 );
 
-// Education Article Page (Unchanged)
+// Education Article Page
 const EducationArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
@@ -215,7 +215,7 @@ const EducationArticle = ({ setCurrentPage }) => (
   </div>
 );
 
-// Fashion Category Page (Unchanged)
+// Fashion Category Page
 const FashionPage = () => (
   <div className="page-content active">
     <h2>🎬 Fashion & Entertainment Category</h2>
@@ -223,7 +223,7 @@ const FashionPage = () => (
   </div>
 );
 
-// Fashion Article Page (Unchanged)
+// Fashion Article Page
 const FashionArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
@@ -243,7 +243,7 @@ const FashionArticle = ({ setCurrentPage }) => (
   </div>
 );
 
-// Footer Component (Unchanged)
+// Footer Component
 const Footer = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -541,7 +541,7 @@ export default function App() {
             margin-top: 0;
             font-size: 1.1em;
             line-height: 1.3;
-            min-height: 0; /* No need to enforce height for titles here */
+            min-height: 0; 
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
