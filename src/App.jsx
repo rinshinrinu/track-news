@@ -145,20 +145,20 @@ const HomePage = ({ setCurrentPage }) => {
           <h2>🎬 Video Stories</h2>
           <div className="video-scroll">
             <div className="video-card">
-              <iframe src="https://youtu.be/fMUuF0OdN1I?si=aY3DQFknc85Km3Gx" title="News Video 1" frameBorder="0" allowFullScreen></iframe>
-              <p className="video-title">Breaking News Update</p>
+              <iframe src="https://www.youtube.com/embed/1wECsnGZcfc" title="24 News Live TV" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">24 News Live TV | Malayalam News Live</p>
             </div>
             <div className="video-card">
-              <iframe src="https://youtu.be/vZxsKnT8jQQ?si=O6aOzbhuOJiUYIoa" title="News Video 2" frameBorder="0" allowFullScreen></iframe>
-              <p className="video-title">Special Report</p>
+              <iframe src="https://www.youtube.com/embed/tXRuaacO-ZU" title="Asianet News Live" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Asianet News Live | Kerala News Live</p>
             </div>
             <div className="video-card">
-              <iframe src="https://youtu.be/rXcDHFFwMKc?si=58KldRm9-vA4FiPA" title="News Video 3" frameBorder="0" allowFullScreen></iframe>
-              <p className="video-title">Interview Highlights</p>
+              <iframe src="https://www.youtube.com/embed/tgBTspqA5nY" title="Manorama News Live" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Manorama News Live | മലയാളം ന്യൂസ് ലൈവ്</p>
             </div>
             <div className="video-card">
-              <iframe src="https://youtu.be/N3QXpZ07gLg?si=my4rE2uG-6Hdh0af" title="News Video 4" frameBorder="0" allowFullScreen></iframe>
-              <p className="video-title">Analysis & Commentary</p>
+              <iframe src="https://www.youtube.com/embed/yiiqRHY1Bl8" title="Kairali News Live" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Kairali News Live | കൈരളി ന്യൂസ് ലൈവ്</p>
             </div>
           </div>
         </section>
