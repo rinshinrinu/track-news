@@ -122,7 +122,7 @@ const HomePage = ({ setCurrentPage }) => {
               <div className="horizontal-content">
                 <span className="category-badge politics">Politics</span>
                 <h4>Local Body Polls: Alliance Talks Heat Up</h4>
-                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>
+                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage(''); }}>
                   Read more →
                 </button>
               </div>
@@ -132,7 +132,7 @@ const HomePage = ({ setCurrentPage }) => {
               <div className="horizontal-content">
                 <span className="category-badge education">Education</span>
                 <h4>New University Reforms Announced</h4>
-                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
+                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage(''); }}>
                   Read more →
                 </button>
               </div>
