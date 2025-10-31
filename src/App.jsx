@@ -46,9 +46,10 @@ const Header = ({ setCurrentPage }) => (
 // Home Page Component
 const HomePage = ({ setCurrentPage }) => {
   return (
+    // The main grid container
     <div className="home-page">
       
-      {/* Main Content Column */}
+      {/* 1. Main Content Column (3fr) */}
       <div className="main-content">
         
         {/* Featured Story */}
@@ -65,7 +66,29 @@ const HomePage = ({ setCurrentPage }) => {
             </button>
           </div>
         </article>
+      </div>
+      
+      {/* 2. Sidebar - Latest News Column (2fr) */}
+      <aside className="sidebar">
+        <div className="sidebar-section">
+          <h3 className="section-title">Latest News</h3>
+          
+          <article className="sidebar-card" onClick={() => setCurrentPage('fashion-article')}>
+            <img src={fashionOtherImg} alt="Prithviraj Shadow Lines" />
+            <div className="sidebar-content">
+              <span className="category-badge fashion">Entertainment</span>
+              <h4>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h4>
+              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('fashion-article'); }}>
+                Read more →
+              </button>
+            </div>
+          </article>
+        </div>
+      </aside>
 
+      {/* 3. FULL-WIDTH SECTIONS (Spanning both columns) */}
+      {/* This new div uses grid-column: 1 / -1; in the CSS to span the whole width */}
+      <div className="full-width-sections">
         {/* Top Stories Section - Horizontal */}
         <section className="top-stories-section">
           <h2>📰 Top Stories</h2>
@@ -86,6 +109,27 @@ const HomePage = ({ setCurrentPage }) => {
               <div className="horizontal-content">
                 <span className="category-badge education">Education</span>
                 <h4>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h4>
+                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
+                  Read more →
+                </button>
+              </div>
+            </article>
+             {/* Added more placeholder cards for horizontal scroll visibility */}
+            <article className="horizontal-card" onClick={() => setCurrentPage('politics-article')}>
+              <img src={politicsSecondaryImg} alt="Kerala Elections" />
+              <div className="horizontal-content">
+                <span className="category-badge politics">Politics</span>
+                <h4>Local Body Polls: Alliance Talks Heat Up</h4>
+                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>
+                  Read more →
+                </button>
+              </div>
+            </article>
+             <article className="horizontal-card" onClick={() => setCurrentPage('education-article')}>
+              <img src={educationSecondaryImg} alt="Smart Classroom" />
+              <div className="horizontal-content">
+                <span className="category-badge education">Education</span>
+                <h4>New University Reforms Announced</h4>
                 <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
                   Read more →
                 </button>
@@ -116,25 +160,8 @@ const HomePage = ({ setCurrentPage }) => {
             </div>
           </div>
         </section>
-      </div>
-      
-      {/* Sidebar - Latest News */}
-      <aside className="sidebar">
-        <div className="sidebar-section">
-          <h3 className="section-title">Latest News</h3>
-          
-          <article className="sidebar-card" onClick={() => setCurrentPage('fashion-article')}>
-            <img src={fashionOtherImg} alt="Prithviraj Shadow Lines" />
-            <div className="sidebar-content">
-              <span className="category-badge fashion">Entertainment</span>
-              <h4>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h4>
-              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('fashion-article'); }}>
-                Read more →
-              </button>
-            </div>
-          </article>
-        </div>
-      </aside>
+      </div> {/* End full-width-sections */}
+
     </div>
   );
 };
@@ -438,17 +465,24 @@ export default function App() {
           border-bottom-color: white;
         }
 
-        /* Home Page Layout - ADJUSTED RATIO for better sidebar structure */
+        /* Home Page Layout - UPDATED GRID */
         .home-page {
           max-width: 1400px;
           margin: 0 auto;
           padding: 30px 20px;
           display: grid;
-          /* UPDATED: Changed grid to 3fr 2fr for better balance */
+          /* Defined 2 columns (e.g., 3 units for main, 2 units for sidebar) */
           grid-template-columns: 3fr 2fr;
           gap: 30px;
         }
 
+        /* NEW: Class to make elements span all columns */
+        .full-width-sections {
+          /* Spans from the first column line to the last column line */
+          grid-column: 1 / -1; 
+          margin-top: 20px;
+        }
+        
         /* FIX: Ensures the main content column respects its grid width */
         .main-content {
           min-width: 0; 
@@ -476,7 +510,6 @@ export default function App() {
         /* Featured Image - Focus Top, Fine-tuned Height */
         .featured-card img {
           width: 100%;
-          /* UPDATED: Fine-tuned height for better match with sidebar */
           height: 320px; 
           object-fit: cover;
           object-position: top;
@@ -566,7 +599,6 @@ export default function App() {
 
         /* Horizontal Story Card - ENLARGED WIDTH */
         .horizontal-card {
-          /* UPDATED: Increased width for prominence */
           flex: 0 0 380px; 
           background: #fff;
           border-radius: 8px;
@@ -598,7 +630,6 @@ export default function App() {
 
         /* Video Card - ENLARGED WIDTH */
         .video-card {
-          /* UPDATED: Increased width for prominence */
           flex: 0 0 400px; 
           background: #fff;
           border-radius: 8px;
@@ -618,8 +649,6 @@ export default function App() {
 
         /* Sidebar */
         .sidebar {
-          /* Added border to visually separate from main content */
-          border-left: 1px solid #e0e0e0; 
           padding-left: 30px;
           display: flex;
           flex-direction: column;
@@ -645,11 +674,9 @@ export default function App() {
           background: #f9f9f9;
           border-radius: 8px;
           overflow: hidden;
-          /* UPDATED: Removed margin-bottom to make sure it acts as a continuous block */
           margin-bottom: 0; 
           cursor: pointer;
           transition: transform 0.3s ease;
-          /* Added height property for structure */
           height: 100%;
         }
 
@@ -664,7 +691,6 @@ export default function App() {
         /* Sidebar Image - Focus Top, ENLARGED HEIGHT */
         .sidebar-card img {
           width: 100%;
-          /* UPDATED: Increased height to match featured card image (320px) */
           height: 320px; 
           object-fit: cover;
           object-position: top;
@@ -880,6 +906,11 @@ export default function App() {
             grid-template-columns: 1fr;
           }
 
+          /* Full-width sections shouldn't span grid on single column layout */
+          .full-width-sections {
+              grid-column: auto;
+          }
+
           .featured-card img {
             height: 300px;
           }
@@ -961,7 +992,8 @@ export default function App() {
           .article-page h1 {
             font-size: 24px;
           }
-        }}`}</style>
+        }
+      `}</style>
 
       <Header setCurrentPage={setCurrentPage} />
       <NavBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
