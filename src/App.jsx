@@ -437,12 +437,13 @@ export default function App() {
         }
 
         .page-content img {
-          width: 100%;
-          height: auto;
-          max-height: 450px;
-          object-fit: cover;
-          margin: 15px 0;
-          border-radius: 5px; /* Rounded corners for images */
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            margin: 15px 0;
+            border-radius: 5px; 
+            object-position: top; /* Apply to article images too */
         }
 
         .back-button {
@@ -469,16 +470,16 @@ export default function App() {
           gap: 20px;
         }
 
-        .main-featured-card {
+        .main-featured-card img {
           width: 100%;
-          background-color: white;
-          border: none; /* Removed border, using shadow instead */
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Prominent shadow */
-          overflow: hidden;
-          cursor: pointer;
-          transition: transform 0.3s;
-          border-radius: 8px; /* Rounded card */
+          height: 450px; /* FIXED HEIGHT for featured image for aspect control */
+          object-fit: cover;
+          margin: 0;
+          /* ⭐️ FIX: Sets the focus point to the top of the image */
+          object-position: top; 
         }
+
+
 
         .main-featured-card:hover {
           transform: translateY(-8px); /* Deeper lift on hover */
