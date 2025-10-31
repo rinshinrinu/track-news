@@ -78,7 +78,7 @@ const HomePage = ({ setCurrentPage }) => {
           <article className="sidebar-card" onClick={() => setCurrentPage('fashion-article')}>
             <img src={fashionOtherImg} alt="Prithviraj Shadow Lines" />
             <div className="sidebar-content">
-              <span className="category-badge fashion">Entertainment</span>
+              <span className="category-badge fashion"></span>
               <h4>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h4>
               <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('fashion-article'); }}>
                 Read more →
@@ -109,7 +109,7 @@ const HomePage = ({ setCurrentPage }) => {
             <article className="horizontal-card" onClick={() => setCurrentPage('education-article')}>
               <img src={educationSecondaryImg} alt="Smart Classroom" />
               <div className="horizontal-content">
-                <span className="category-badge education">Education</span>
+                <span className="category-badge education"></span>
                 <h4>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h4>
                 <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
                   Read more →
@@ -278,7 +278,7 @@ const EducationArticle = ({ setCurrentPage }) => (
 const FashionArticle = ({ setCurrentPage }) => (
   <article className="article-page">
     <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
-    <span className="category-badge fashion">Entertainment</span>
+    <span className="category-badge fashion"></span>
     <h1>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h1>
     <div className="article-meta">
       <span>📍 Thiruvananthapuram</span>
