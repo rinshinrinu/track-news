@@ -437,13 +437,14 @@ export default function App() {
           border-bottom-color: white;
         }
 
-        /* Home Page Layout */
+        /* Home Page Layout - ADJUSTED RATIO (3fr 2fr instead of 2fr 1fr) */
         .home-page {
           max-width: 1400px;
           margin: 0 auto;
           padding: 30px 20px;
           display: grid;
-          grid-template-columns: 2fr 1fr;
+          /* UPDATED: Changed grid to 3fr 2fr for better balance with sidebar */
+          grid-template-columns: 3fr 2fr;
           gap: 30px;
         }
 
@@ -454,11 +455,12 @@ export default function App() {
           overflow: hidden;
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
           cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          /* Removed transform hover effect from the card to prevent movement */
+          transition: box-shadow 0.3s ease;
         }
 
         .featured-card:hover {
-          transform: translateY(-5px);
+          /* Removed transform: translateY(-5px); */
           box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
@@ -467,18 +469,21 @@ export default function App() {
           overflow: hidden;
         }
 
-        /* Featured Image - Focus Top */
+        /* Featured Image - Focus Top, Reduced Height */
         .featured-card img {
           width: 100%;
-          height: 400px;
+          /* UPDATED: Reduced height for better structure */
+          height: 350px; 
           object-fit: cover;
-          /* UPDATED: Focus on the top of the image */
           object-position: top;
-          transition: transform 0.3s ease;
+          /* Removed transform transition */
+          transition: all 0.3s ease;
         }
 
         .featured-card:hover img {
-          transform: scale(1.05);
+          /* REMOVED: The moving effect (zoom) */
+          /* transform: scale(1.05); */
+          transform: none; 
         }
 
         .category-badge {
@@ -537,14 +542,12 @@ export default function App() {
         /* Horizontal Scroll Containers */
         .top-stories-scroll,
         .video-scroll {
-          /* Setup Flexbox for horizontal layout */
           display: flex;
           flex-wrap: nowrap;
-          /* Enable horizontal scrolling */
           overflow-x: auto;
           overflow-y: hidden;
           gap: 20px;
-          padding-bottom: 10px; /* Space for scrollbar */
+          padding-bottom: 10px; 
           -webkit-overflow-scrolling: touch;
         }
 
@@ -562,7 +565,6 @@ export default function App() {
 
         /* Horizontal Story Card */
         .horizontal-card {
-          /* Prevent shrinking, define fixed width for scroll items */
           flex: 0 0 300px; 
           background: #fff;
           border-radius: 8px;
@@ -575,9 +577,8 @@ export default function App() {
         /* Horizontal Card Image - Focus Top */
         .horizontal-card img {
           width: 100%;
-          height: 180px; /* Set a consistent height */
+          height: 180px; 
           object-fit: cover;
-          /* UPDATED: Focus on the top of the image */
           object-position: top;
           transition: opacity 0.3s ease;
         }
@@ -595,7 +596,6 @@ export default function App() {
 
         /* Video Card */
         .video-card {
-          /* Prevent shrinking, define fixed width for scroll items */
           flex: 0 0 320px; 
           background: #fff;
           border-radius: 8px;
@@ -657,7 +657,6 @@ export default function App() {
           width: 100%;
           height: 150px;
           object-fit: cover;
-          /* UPDATED: Focus on the top of the image */
           object-position: top;
         }
 
@@ -753,7 +752,6 @@ export default function App() {
           width: 100%;
           height: 450px;
           object-fit: cover;
-          /* UPDATED: Focus on the top of the image */
           object-position: top;
           border-radius: 8px;
           margin-bottom: 30px;
