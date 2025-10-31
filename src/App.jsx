@@ -5,6 +5,8 @@ import sportsFeaturedImg from './assets/images/sports-featured.jpg';
 import politicsSecondaryImg from './assets/images/politics-secondary.jpg';
 import educationSecondaryImg from './assets/images/education-secondary.jpg';
 import fashionOtherImg from './assets/images/fashion-other.jpg';
+import downpng from './assets/images/download.png';
+import downjpg from './assets/images/download.jpg';
 
 // Navigation Component
 const NavBar = ({ currentPage, setCurrentPage }) => {
@@ -116,7 +118,7 @@ const HomePage = ({ setCurrentPage }) => {
             </article>
              {/* Added more placeholder cards for horizontal scroll visibility */}
             <article className="horizontal-card" onClick={() => setCurrentPage('politics-article')}>
-              <img src={politicsSecondaryImg} alt="Kerala Elections" />
+              <img src={downpng} alt="Kerala Elections" />
               <div className="horizontal-content">
                 <span className="category-badge politics">Politics</span>
                 <h4>Local Body Polls: Alliance Talks Heat Up</h4>
@@ -126,7 +128,7 @@ const HomePage = ({ setCurrentPage }) => {
               </div>
             </article>
              <article className="horizontal-card" onClick={() => setCurrentPage('education-article')}>
-              <img src={educationSecondaryImg} alt="Smart Classroom" />
+              <img src={downjpg} alt="Smart Classroom" />
               <div className="horizontal-content">
                 <span className="category-badge education">Education</span>
                 <h4>New University Reforms Announced</h4>
