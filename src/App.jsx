@@ -130,7 +130,7 @@ const HomePage = ({ setCurrentPage }) => {
              <article className="horizontal-card" onClick={() => setCurrentPage('education-article')}>
               <img src={downjpg} alt="Smart Classroom" />
               <div className="horizontal-content">
-                <span className="category-badge education">Education</span>
+                <span className="category-badge education"></span>
                 <h4>New University Reforms Announced</h4>
                 <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage(''); }}>
                   Read more →
@@ -251,7 +251,7 @@ const SportsArticle = ({ setCurrentPage }) => (
 const EducationArticle = ({ setCurrentPage }) => (
   <article className="article-page">
     <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
-    <span className="category-badge education">Education</span>
+    <span className="category-badge education"></span>
     <h1>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h1>
     <div className="article-meta">
       <span>📍 Thiruvananthapuram</span>
