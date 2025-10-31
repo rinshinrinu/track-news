@@ -1,17 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// 1. IMPORT LOCAL IMAGES
-// NOTE: These files must exist in your project, e.g., in a folder named 'src/assets/images/'
-// Replace the placeholders (e.g., './assets/images/sports-featured.jpg') with the actual path
-// where you save the images in your project structure.
-// If you are using Vite, a common location is the 'src/assets/' folder.
-
-import sportsFeaturedImg from './assets/images/sports-featured.jpg'; 
-import politicsSecondaryImg from './assets/images/politics-secondary.jpg';
-import educationSecondaryImg from './assets/images/education-secondary.jpg';
-import fashionOtherImg from './assets/images/fashion-other.jpg';
-
-
 // Navigation Component
 const NavBar = ({ currentPage, setCurrentPage }) => {
   const navItems = [
@@ -53,11 +41,9 @@ const HomePage = ({ setCurrentPage }) => {
     <div id="home-page" className="page-content active">
       {/* Main Featured News */}
       <div className="main-featured-card" onClick={() => setCurrentPage('sports-article')}>
-        {/* Using imported local image variable */}
         <img 
-          src={sportsFeaturedImg} 
+          src="https://via.placeholder.com/736x896?text=Virat+Kohli+and+Rohit+Sharma"
           alt="Kohli and Rohit Return" 
-          onError={(e) => e.target.src = 'https://via.placeholder.com/800x400?text=Virat+Kohli+and+Rohit+Sharma'}
         />
         <div className="card-content">
           <h3>Kohli and Rohit Return to ODI Squad Against Australia: Team India Sets Eyes on 2027 World Cup</h3>
@@ -68,11 +54,9 @@ const HomePage = ({ setCurrentPage }) => {
       {/* Secondary News Row */}
       <div className="secondary-news-row">
         <div className="secondary-news-card" onClick={() => setCurrentPage('politics-article')}>
-          {/* Using imported local image variable */}
           <img 
-            src={politicsSecondaryImg} 
+            src="https://via.placeholder.com/600x400?text=Kerala+Elections"
             alt="Kerala Elections"
-            onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Kerala+Elections'}
           />
           <div className="card-content">
             <h3>Political Tensions Rise in Kerala Ahead of Local Body Elections</h3>
@@ -81,11 +65,9 @@ const HomePage = ({ setCurrentPage }) => {
         </div>
 
         <div className="secondary-news-card" onClick={() => setCurrentPage('education-article')}>
-          {/* Using imported local image variable */}
           <img 
-            src={educationSecondaryImg} 
+            src="https://via.placeholder.com/600x400?text=Smart+Classroom"
             alt="Smart Classroom"
-            onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Smart+Classroom'}
           />
           <div className="card-content">
             <h3>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h3>
@@ -97,11 +79,9 @@ const HomePage = ({ setCurrentPage }) => {
       {/* Other News Grid */}
       <div className="other-news-grid">
         <div className="other-news-card" onClick={() => setCurrentPage('fashion-article')}>
-          {/* Using imported local image variable */}
           <img 
-            src={fashionOtherImg} 
+            src="https://via.placeholder.com/226x283?text=Prithviraj+Sukumaran"
             alt="Prithviraj Shadow Lines"
-            onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Prithviraj+Sukumaran'}
           />
           <div className="card-content">
             <h3>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h3>
@@ -145,11 +125,9 @@ const PoliticsArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
     <h2>🇮🇳 Political News: Kerala Local Body Elections</h2>
-    {/* Using imported local image variable */}
     <img 
-      src={politicsSecondaryImg} 
+      src="https://via.placeholder.com/800x450?text=Kerala+Elections+Banner"
       alt="Political Rally"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Kerala+Elections+Banner'}
     />
     <div className="meta">Thiruvananthapuram, October 18, 2025</div>
     <p><strong>Political Tensions Rise in Kerala Ahead of Local Body Elections</strong></p>
@@ -173,11 +151,9 @@ const SportsArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
     <h2>🏏 Sports News: Cricket World Cup Preparations</h2>
-    {/* Using imported local image variable */}
     <img 
-      src={sportsFeaturedImg} 
+      src="https://via.placeholder.com/736x896?text=Kohli+and+Rohit"
       alt="Virat Kohli and Rohit Sharma"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Kohli+and+Rohit'}
     />
     <div className="meta">Mumbai, October 18, 2025</div>
     <p><strong>Kohli and Rohit Return to ODI Squad Against Australia: Team India Sets Eyes on 2027 World Cup</strong></p>
@@ -202,11 +178,9 @@ const EducationArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
     <h2>📚 Education News: Kerala's Digital Divide</h2>
-    {/* Using imported local image variable */}
     <img 
-      src={educationSecondaryImg} 
+      src="https://via.placeholder.com/800x450?text=Smart+Classroom"
       alt="Digital Classroom"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Smart+Classroom'}
     />
     <div className="meta">Thiruvananthapuram, October 18, 2025</div>
     <p><strong>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</strong></p>
@@ -231,11 +205,9 @@ const FashionArticle = ({ setCurrentPage }) => (
   <div className="page-content active">
     <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
     <h2>🎬 Fashion & Entertainment: Malayalam Cinema</h2>
-    {/* Using imported local image variable */}
     <img 
-      src={fashionOtherImg} 
+      src="https://via.placeholder.com/226x283?text=Prithviraj+Sukumaran"
       alt="Prithviraj Sukumaran"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Prithviraj+Sukumaran'}
     />
     <div className="meta">Thiruvananthapuram, October 18, 2025</div>
     <p><strong>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</strong></p>
@@ -258,7 +230,6 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simple client-side validation check before submission status change
     if (formData.firstName.trim() && formData.lastName.trim() && formData.message.trim()) {
         setSubmitted(true);
         setTimeout(() => {
@@ -269,22 +240,16 @@ const Footer = () => {
         alert("Please fill in all fields.");
     }
   };
-  
-  // Note: The form elements are not wrapped in a <form> tag, 
-  // which prevents the default form submission (e.g., page reload). 
-  // I've kept your original div structure.
 
   return (
     <div className="footer-section">
       <div className="footer-content">
         <div className="about-text">
           <h2>About TRACK NEWS</h2>
-          <p>TRACK NEWS is a website designed to submit as a part of **Production portfolio of MIMC-020**. It is created by **[Your Name]**, student of MAJMC. In this website, there are five webpages related to sports, politics, education, fashion, and the home page.</p>
+          <p>TRACK NEWS is a website designed to submit as a part of Production portfolio of MIMC-020. It is created by [Your Name], student of MAJMC. In this website, there are five webpages related to sports, politics, education, fashion, and the home page.</p>
         </div>
 
         <div className="contact-form-container">
-          {/* Note: In a real app, this onSubmit should be on a <form> element. 
-             Since your original code used a div, I've kept it and moved the handler to the button. */}
           <div> 
             <input 
               type="text" 
@@ -306,7 +271,6 @@ const Footer = () => {
               placeholder="leave your message" 
               required
             />
-            {/* Added onClick for consistency with original handler placement */}
             <button onClick={handleSubmit} className="submit-btn">
               {submitted ? 'Submitted!' : 'Submit'}
             </button>
@@ -352,9 +316,6 @@ export default function App() {
 
   return (
     <div>
-      {/* NOTE: The <style> block is not repeated here for brevity, but you must keep 
-        the original <style> block containing all your CSS inside the App component!
-      */}
       <style>{`
         body {
           font-family: Arial, sans-serif;
@@ -432,8 +393,9 @@ export default function App() {
         .page-content img {
           width: 100%;
           height: auto;
-          max-height: 400px;
+          max-height: 600px;
           object-fit: cover;
+          object-position: center;
           margin: 15px 0;
         }
 
@@ -474,8 +436,9 @@ export default function App() {
 
         .main-featured-card img {
           width: 100%;
-          height: 400px;
+          height: 500px;
           object-fit: cover;
+          object-position: center;
         }
 
         .main-featured-card .card-content {
@@ -537,8 +500,9 @@ export default function App() {
 
         .other-news-card img {
           width: 100%;
-          height: 150px;
+          height: 340px;
           object-fit: cover;
+          object-position: center;
         }
 
         .card-content {
@@ -682,6 +646,9 @@ export default function App() {
             width: 100%;
           }
           .main-featured-card img {
+            height: 350px;
+          }
+          .other-news-card img {
             height: 250px;
           }
         }
