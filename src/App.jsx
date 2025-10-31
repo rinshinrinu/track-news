@@ -368,7 +368,7 @@ export default function App() {
   return (
     <div className="app">
       <style>{`
-        * {
+      * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -467,11 +467,13 @@ export default function App() {
           overflow: hidden;
         }
 
+        /* Featured Image - Focus Top */
         .featured-card img {
           width: 100%;
           height: 400px;
           object-fit: cover;
-          object-position: center;
+          /* UPDATED: Focus on the top of the image */
+          object-position: top;
           transition: transform 0.3s ease;
         }
 
@@ -530,25 +532,76 @@ export default function App() {
           background-color: #a00000;
         }
 
-        /* Video Section */
-        .video-section {
-          background: white;
-          border-radius: 12px;
-          padding: 25px;
-          margin-top: 30px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+        /* --- Horizontal Scroll Section Styles --- */
 
-        .video-section h2 {
-          color: #1a1a1a;
-          margin-bottom: 20px;
-          font-size: 24px;
-        }
-
-        .video-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
+        /* Horizontal Scroll Containers */
+        .top-stories-scroll,
+        .video-scroll {
+          /* Setup Flexbox for horizontal layout */
+          display: flex;
+          flex-wrap: nowrap;
+          /* Enable horizontal scrolling */
+          overflow-x: auto;
+          overflow-y: hidden;
           gap: 20px;
+          padding-bottom: 10px; /* Space for scrollbar */
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Webkit Scrollbar Styling (Optional but recommended for visual appeal) */
+        .top-stories-scroll::-webkit-scrollbar,
+        .video-scroll::-webkit-scrollbar {
+          height: 8px;
+        }
+
+        .top-stories-scroll::-webkit-scrollbar-thumb,
+        .video-scroll::-webkit-scrollbar-thumb {
+            background-color: #8b0000;
+            border-radius: 4px;
+        }
+
+        /* Horizontal Story Card */
+        .horizontal-card {
+          /* Prevent shrinking, define fixed width for scroll items */
+          flex: 0 0 300px; 
+          background: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
+
+        /* Horizontal Card Image - Focus Top */
+        .horizontal-card img {
+          width: 100%;
+          height: 180px; /* Set a consistent height */
+          object-fit: cover;
+          /* UPDATED: Focus on the top of the image */
+          object-position: top;
+          transition: opacity 0.3s ease;
+        }
+
+        .horizontal-content {
+          padding: 15px;
+        }
+
+        .horizontal-content h4 {
+          color: #1a1a1a;
+          font-size: 18px;
+          line-height: 1.4;
+          margin: 10px 0;
+        }
+
+        /* Video Card */
+        .video-card {
+          /* Prevent shrinking, define fixed width for scroll items */
+          flex: 0 0 320px; 
+          background: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          padding: 15px;
         }
 
         .video-card iframe {
@@ -556,12 +609,9 @@ export default function App() {
           height: 200px;
           border-radius: 8px;
         }
+        
+        /* --- End Horizontal Scroll Section Styles --- */
 
-        .video-title {
-          margin-top: 10px;
-          font-weight: 600;
-          color: #333;
-        }
 
         /* Sidebar */
         .sidebar {
@@ -602,10 +652,13 @@ export default function App() {
           transform: translateX(5px);
         }
 
+        /* Sidebar Image - Focus Top */
         .sidebar-card img {
           width: 100%;
           height: 150px;
           object-fit: cover;
+          /* UPDATED: Focus on the top of the image */
+          object-position: top;
         }
 
         .sidebar-content {
@@ -695,10 +748,13 @@ export default function App() {
           border-bottom: 1px solid #e0e0e0;
         }
 
+        /* Article Image - Focus Top */
         .article-image {
           width: 100%;
           height: 450px;
           object-fit: cover;
+          /* UPDATED: Focus on the top of the image */
+          object-position: top;
           border-radius: 8px;
           margin-bottom: 30px;
         }
@@ -816,10 +872,6 @@ export default function App() {
             grid-template-columns: 1fr;
           }
 
-          .video-grid {
-            grid-template-columns: 1fr;
-          }
-
           .featured-card img {
             height: 300px;
           }
@@ -864,10 +916,6 @@ export default function App() {
           .footer-content {
             grid-template-columns: 1fr;
             gap: 30px;
-          }
-
-          .video-card iframe {
-            height: 180px;
           }
         }
 
