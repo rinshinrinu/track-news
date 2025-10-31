@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 // Placeholder images (using via.placeholder.com as fallback)
-const sportsFeaturedImg = 'https://via.placeholder.com/800x400/8b0000/ffffff?text=Kohli+and+Rohit+Return';
-const politicsSecondaryImg = 'https://via.placeholder.com/600x400/1a5490/ffffff?text=Kerala+Elections';
-const educationSecondaryImg = 'https://via.placeholder.com/600x400/2d5016/ffffff?text=Smart+Classroom';
-const fashionOtherImg = 'https://via.placeholder.com/600x400/6b2d5c/ffffff?text=Prithviraj+Shadow+Lines';
+import sportsFeaturedImg from './assets/images/sports-featured.jpg';
+import politicsSecondaryImg from './assets/images/politics-secondary.jpg';
+import educationSecondaryImg from './assets/images/education-secondary.jpg';
+import fashionOtherImg from './assets/images/fashion-other.jpg';
 
 // Navigation Component
 const NavBar = ({ currentPage, setCurrentPage }) => {
