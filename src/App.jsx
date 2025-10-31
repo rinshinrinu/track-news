@@ -98,7 +98,7 @@ const HomePage = ({ setCurrentPage }) => {
             <article className="horizontal-card" onClick={() => setCurrentPage('politics-article')}>
               <img src={politicsSecondaryImg} alt="Kerala Elections" />
               <div className="horizontal-content">
-                <span className="category-badge politics">Politics</span>
+                <span className="category-badge politics"></span>
                 <h4>Political Tensions Rise in Kerala Ahead of Local Body Elections</h4>
                 <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>
                   Read more →
@@ -120,7 +120,7 @@ const HomePage = ({ setCurrentPage }) => {
             <article className="horizontal-card" onClick={() => setCurrentPage('politics-article')}>
               <img src={downpng} alt="Kerala Elections" />
               <div className="horizontal-content">
-                <span className="category-badge politics">Politics</span>
+                <span className="category-badge politics"></span>
                 <h4>Local Body Polls: Alliance Talks Heat Up</h4>
                 <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage(''); }}>
                   Read more →
@@ -201,7 +201,7 @@ const FashionPage = () => (
 const PoliticsArticle = ({ setCurrentPage }) => (
   <article className="article-page">
     <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
-    <span className="category-badge politics">Politics</span>
+    <span className="category-badge politics"></span>
     <h1>Political Tensions Rise in Kerala Ahead of Local Body Elections</h1>
     <div className="article-meta">
       <span>📍 Thiruvananthapuram</span>
