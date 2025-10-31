@@ -367,8 +367,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <style>{`
-      * {
+      <style>{`* {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -379,6 +378,8 @@ export default function App() {
           background-color: #f5f5f5;
           color: #333;
           line-height: 1.6;
+          /* FIX: Prevents page-level horizontal scroll from content overflow */
+          overflow-x: hidden; 
         }
 
         .app {
@@ -437,15 +438,20 @@ export default function App() {
           border-bottom-color: white;
         }
 
-        /* Home Page Layout - ADJUSTED RATIO (3fr 2fr instead of 2fr 1fr) */
+        /* Home Page Layout - Adjusted to safer 2fr 1fr and added min-width fix */
         .home-page {
           max-width: 1400px;
           margin: 0 auto;
           padding: 30px 20px;
           display: grid;
-          /* UPDATED: Changed grid to 3fr 2fr for better balance with sidebar */
-          grid-template-columns: 3fr 2fr;
+          /* Reverted to 2fr 1fr for stability, ensuring Main Content is wider */
+          grid-template-columns: 2fr 1fr;
           gap: 30px;
+        }
+
+        /* FIX: Ensures the main content column respects its grid width */
+        .main-content {
+          min-width: 0; 
         }
 
         /* Featured Card */
@@ -455,12 +461,10 @@ export default function App() {
           overflow: hidden;
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
           cursor: pointer;
-          /* Removed transform hover effect from the card to prevent movement */
           transition: box-shadow 0.3s ease;
         }
 
         .featured-card:hover {
-          /* Removed transform: translateY(-5px); */
           box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
@@ -472,17 +476,13 @@ export default function App() {
         /* Featured Image - Focus Top, Reduced Height */
         .featured-card img {
           width: 100%;
-          /* UPDATED: Reduced height for better structure */
           height: 350px; 
           object-fit: cover;
           object-position: top;
-          /* Removed transform transition */
           transition: all 0.3s ease;
         }
 
         .featured-card:hover img {
-          /* REMOVED: The moving effect (zoom) */
-          /* transform: scale(1.05); */
           transform: none; 
         }
 
@@ -946,8 +946,7 @@ export default function App() {
           .article-page h1 {
             font-size: 24px;
           }
-        }
-      `}</style>
+        }`}</style>
 
       <Header setCurrentPage={setCurrentPage} />
       <NavBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
