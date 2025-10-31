@@ -1,732 +1,916 @@
 import React, { useState, useEffect } from 'react';
 
-// 1. IMPORT LOCAL IMAGES
-import sportsFeaturedImg from './assets/images/sports-featured.jpg'; 
-import politicsSecondaryImg from './assets/images/politics-secondary.jpg';
-import educationSecondaryImg from './assets/images/education-secondary.jpg';
-import fashionOtherImg from './assets/images/fashion-other.jpg';
-
+// Placeholder images (using via.placeholder.com as fallback)
+const sportsFeaturedImg = 'https://via.placeholder.com/800x400/8b0000/ffffff?text=Kohli+and+Rohit+Return';
+const politicsSecondaryImg = 'https://via.placeholder.com/600x400/1a5490/ffffff?text=Kerala+Elections';
+const educationSecondaryImg = 'https://via.placeholder.com/600x400/2d5016/ffffff?text=Smart+Classroom';
+const fashionOtherImg = 'https://via.placeholder.com/600x400/6b2d5c/ffffff?text=Prithviraj+Shadow+Lines';
 
 // Navigation Component
 const NavBar = ({ currentPage, setCurrentPage }) => {
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'politics', label: 'Politics' },
-    { id: 'sports', label: 'Sports' },
-    { id: 'education', label: 'Education' },
-    { id: 'fashion', label: 'Fashion' }
-  ];
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'politics', label: 'Politics' },
+    { id: 'sports', label: 'Sports' },
+    { id: 'education', label: 'Education' },
+    { id: 'fashion', label: 'Fashion' }
+  ];
 
-  return (
-    <div className="nav-bar">
-      {navItems.map(item => (
-        <a
-          key={item.id}
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            setCurrentPage(item.id);
-          }}
-        >
-          {item.label}
-        </a>
-      ))}
-    </div>
-  );
+  return (
+    <nav className="nav-bar">
+      {navItems.map(item => (
+        <a
+          key={item.id}
+          href="#"
+          className={currentPage === item.id ? 'active' : ''}
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentPage(item.id);
+          }}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  );
 };
 
 // Header Component
 const Header = ({ setCurrentPage }) => (
-  <div className="header" onClick={() => setCurrentPage('home')}>
-    <h1>TRACK NEWS</h1>
-  </div>
+  <header className="header" onClick={() => setCurrentPage('home')}>
+    <h1>TRACK NEWS</h1>
+    <p className="tagline">Your Source for Kerala & India News</p>
+  </header>
 );
 
-// ⭐️ REFACTORED HOME PAGE COMPONENT: Uses Main and Sidebar columns
+// Home Page Component
 const HomePage = ({ setCurrentPage }) => {
-  return (
-    <div id="home-page" className="page-content active">
-      
-      {/* ⭐️ MAIN COLUMN: Featured Story + Video Section (70% Width) */}
-      <div className="main-column">
-        
-        {/* Main Featured News */}
-        <div className="main-featured-card" onClick={() => setCurrentPage('sports-article')}>
-          <img 
-            src={sportsFeaturedImg} 
-            alt="Kohli and Rohit Return" 
-            onError={(e) => e.target.src = 'https://via.placeholder.com/800x400?text=Virat+Kohli+and+Rohit+Sharma'}
-          />
-          <div className="card-content">
-            <h3>Kohli and Rohit Return to ODI Squad Against Australia: Team India Sets Eyes on 2027 World Cup</h3>
-            <a href="#" onClick={(e) => { e.stopPropagation(); setCurrentPage('sports-article'); }}>...read more</a>
-          </div>
-        </div>
+  return (
+    <div className="home-page">
+      
+      {/* Main Content Column */}
+      <div className="main-content">
+        
+        {/* Featured Story */}
+        <article className="featured-card" onClick={() => setCurrentPage('sports-article')}>
+          <div className="image-wrapper">
+            <img src={sportsFeaturedImg} alt="Kohli and Rohit Return" />
+            <span className="category-badge sports">Sports</span>
+          </div>
+          <div className="card-content">
+            <h2>Kohli and Rohit Return to ODI Squad Against Australia: Team India Sets Eyes on 2027 World Cup</h2>
+            <p className="excerpt">In a major development that has delighted cricket fans across the nation, Virat Kohli and Rohit Sharma have been named in India's ODI squad...</p>
+            <button className="read-more" onClick={(e) => { e.stopPropagation(); setCurrentPage('sports-article'); }}>
+              Read Full Story →
+            </button>
+          </div>
+        </article>
 
-        {/* Video Section */}
-        <div className="video-scroll-section">
-          <h2>🎬 Video Previews</h2>
-          <div className="video-scroll-container">
-            <div className="video-item">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 1" frameBorder="0" allowFullScreen></iframe>
-            </div>
-            <div className="video-item">
-              <iframe src="https://www.youtube.com/embed/EE-MSd0N67Q" title="YouTube video 2" frameBorder="0" allowFullScreen></iframe>
-          </div>
-            <div className="video-item">
-              <iframe src="https://www.youtube.com/embed/Fw0S4sQc1uY" title="YouTube video 3" frameBorder="0" allowFullScreen></iframe>
-          </div>
-            <div className="video-item">
-              <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video 4" frameBorder="0" allowFullScreen></iframe>
-          </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* ⭐️ SIDEBAR COLUMN: Secondary + Other News (30% Width) */}
-      <div className="sidebar-column">
-        
-        {/* Secondary News Row (Stacked vertically by CSS in sidebar) */}
-        <div className="secondary-news-row">
-          <div className="secondary-news-card" onClick={() => setCurrentPage('politics-article')}>
-            <img 
-              src={politicsSecondaryImg} 
-              alt="Kerala Elections"
-              onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Kerala+Elections'}
-            />
-            <div className="card-content">
-              <h3>Political Tensions Rise in Kerala Ahead of Local Body Elections</h3>
-              <a href="#" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>...read more</a>
-            </div>
-          </div>
+        {/* Video Section */}
+        <section className="video-section">
+          <h2>🎬 Video Stories</h2>
+          <div className="video-grid">
+            <div className="video-card">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="News Video 1" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Breaking News Update</p>
+            </div>
+            <div className="video-card">
+              <iframe src="https://www.youtube.com/embed/EE-MSd0N67Q" title="News Video 2" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Special Report</p>
+            </div>
+            <div className="video-card">
+              <iframe src="https://www.youtube.com/embed/Fw0S4sQc1uY" title="News Video 3" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Interview Highlights</p>
+            </div>
+            <div className="video-card">
+              <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="News Video 4" frameBorder="0" allowFullScreen></iframe>
+              <p className="video-title">Analysis & Commentary</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      {/* Sidebar */}
+      <aside className="sidebar">
+        
+        {/* Secondary News */}
+        <div className="sidebar-section">
+          <h3 className="section-title">Trending Stories</h3>
+          
+          <article className="sidebar-card" onClick={() => setCurrentPage('politics-article')}>
+            <img src={politicsSecondaryImg} alt="Kerala Elections" />
+            <div className="sidebar-content">
+              <span className="category-badge politics">Politics</span>
+              <h4>Political Tensions Rise in Kerala Ahead of Local Body Elections</h4>
+              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>
+                Read more →
+              </button>
+            </div>
+          </article>
 
-          <div className="secondary-news-card" onClick={() => setCurrentPage('education-article')}>
-            <img 
-              src={educationSecondaryImg} 
-              alt="Smart Classroom"
-              onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Smart+Classroom'}
-            />
-            <div className="card-content">
-              <h3>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h3>
-              <a href="#" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>...read more</a>
-            </div>
-          </div>
-        </div>
+          <article className="sidebar-card" onClick={() => setCurrentPage('education-article')}>
+            <img src={educationSecondaryImg} alt="Smart Classroom" />
+            <div className="sidebar-content">
+              <span className="category-badge education">Education</span>
+              <h4>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h4>
+              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
+                Read more →
+              </button>
+            </div>
+          </article>
+        </div>
 
-        {/* Other News Grid (Single Card in Sidebar) */}
-        <div className="other-news-grid">
-          <div className="other-news-card" onClick={() => setCurrentPage('fashion-article')}>
-            <img 
-              src={fashionOtherImg} 
-              alt="Prithviraj Shadow Lines"
-              onError={(e) => e.target.src = 'https://via.placeholder.com/600x400?text=Prithviraj+Sukumaran'}
-            />
-            <div className="card-content">
-              <h3>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h3>
-              <a href="#" onClick={(e) => { e.stopPropagation(); setCurrentPage('fashion-article'); }}>...read more</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+        {/* Entertainment News */}
+        <div className="sidebar-section">
+          <h3 className="section-title">Entertainment</h3>
+          
+          <article className="sidebar-card" onClick={() => setCurrentPage('fashion-article')}>
+            <img src={fashionOtherImg} alt="Prithviraj Shadow Lines" />
+            <div className="sidebar-content">
+              <span className="category-badge fashion">Entertainment</span>
+              <h4>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h4>
+              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('fashion-article'); }}>
+                Read more →
+              </button>
+            </div>
+          </article>
+        </div>
+      </aside>
+    </div>
+  );
 };
 
-// Politics Category Page
+// Category Pages
 const PoliticsPage = () => (
-  <div className="page-content active">
-    <h2>🇮🇳 Politics Category</h2>
-    <p>Welcome to the Politics section. Click on articles from the home page or navigation to read full stories.</p>
-  </div>
+  <div className="category-page">
+    <h2>🇮🇳 Politics</h2>
+    <p>Welcome to the Politics section. Explore our latest political news and analysis from Kerala and across India.</p>
+  </div>
 );
 
-// Politics Article Page
-const PoliticsArticle = ({ setCurrentPage }) => (
-  <div className="page-content active">
-    <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
-    <h2>🇮🇳 Political News: Kerala Local Body Elections</h2>
-    <img 
-      src={politicsSecondaryImg} 
-      alt="Political Rally"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Kerala+Elections+Banner'}
-    />
-    <div className="meta">Thiruvananthapuram, October 18, 2025</div>
-    <p><strong>Political Tensions Rise in Kerala Ahead of Local Body Elections</strong></p>
-    <p>As Kerala gears up for the upcoming local body elections, the political atmosphere in the state has grown increasingly charged. The major political parties — the Communist Party of India (Marxist)-led Left Democratic Front (LDF), the Indian National Congress-led United Democratic Front (UDF), and the Bharatiya Janata Party (BJP) — are all vying for control of the state's grassroots governance structures.</p>
-    <p>The LDF, which currently holds power in the state government, is seeking to maintain its dominance in local bodies, while the UDF aims to reclaim lost ground. The BJP, though traditionally a minor player in Kerala politics, has been making inroads and hopes to expand its footprint at the local level.</p>
-    <p>Campaign rallies, political debates, and door-to-door canvassing have intensified across the state. Key issues dominating the discourse include unemployment, development projects, healthcare infrastructure, and the management of natural resources.</p>
-    <p>Political analysts suggest that these elections will serve as a crucial indicator of public sentiment ahead of the next state assembly elections. With all parties deploying their top leaders and strategists, the battle for Kerala's local bodies promises to be fiercely contested.</p>
-  </div>
-);
-
-// Sports Category Page
 const SportsPage = () => (
-  <div className="page-content active">
-    <h2>🏏 Sports Category</h2>
-    <p>Welcome to the Sports section. Click on articles from the home page or navigation to read full stories.</p>
-  </div>
+  <div className="category-page">
+    <h2>🏏 Sports</h2>
+    <p>Welcome to the Sports section. Get the latest updates on cricket, football, and other sports.</p>
+  </div>
 );
 
-// Sports Article Page
-const SportsArticle = ({ setCurrentPage }) => (
-  <div className="page-content active">
-    <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
-    <h2>🏏 Sports News: Cricket World Cup Preparations</h2>
-    <img 
-      src={sportsFeaturedImg} 
-      alt="Virat Kohli and Rohit Sharma"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Kohli+and+Rohit'}
-    />
-    <div className="meta">Mumbai, October 18, 2025</div>
-    <p><strong>Kohli and Rohit Return to ODI Squad Against Australia: Team India Sets Eyes on 2027 World Cup</strong></p>
-    <p>In a major development that has delighted cricket fans across the nation, Virat Kohli and Rohit Sharma have been named in India's ODI squad for the upcoming series against Australia. This marks a significant return for both veterans as India begins its preparations for the 2027 Cricket World Cup.</p>
-    <p>The Board of Control for Cricket in India (BCCI) announced the squad today, with Rohit Sharma retaining the captaincy and Virat Kohli returning to the middle order. The duo, who have been instrumental in India's success in limited-overs cricket over the past decade, bring a wealth of experience and leadership to the team.</p>
-    <p>The five-match ODI series against Australia is scheduled to begin next month and will serve as a crucial testing ground for India's World Cup aspirations. The team management has indicated that they will be experimenting with different combinations while ensuring that the core group of experienced players remains intact.</p>
-    <p>Young talents such as Shubman Gill, Yashasvi Jaiswal, and Rinku Singh have also been included in the squad, signaling a blend of youth and experience. The selectors have made it clear that the focus is on building a balanced team capable of performing under pressure on the global stage.</p>
-    <p>Cricket experts believe that the return of Kohli and Rohit adds immense value to the squad, not just in terms of their batting prowess but also their ability to mentor younger players. With the 2027 World Cup on the horizon, all eyes will be on how this team shapes up in the coming months.</p>
-  </div>
-);
-
-// Education Category Page
 const EducationPage = () => (
-  <div className="page-content active">
-    <h2>📚 Education Category</h2>
-    <p>Welcome to the Education section. Click on articles from the home page or navigation to read full stories.</p>
-  </div>
+  <div className="category-page">
+    <h2>📚 Education</h2>
+    <p>Welcome to the Education section. Stay informed about educational developments and policies.</p>
+  </div>
 );
 
-// Education Article Page
-const EducationArticle = ({ setCurrentPage }) => (
-  <div className="page-content active">
-    <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
-    <h2>📚 Education News: Kerala's Digital Divide</h2>
-    <img 
-      src={educationSecondaryImg} 
-      alt="Digital Classroom"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Smart+Classroom'}
-    />
-    <div className="meta">Thiruvananthapuram, October 18, 2025</div>
-    <p><strong>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</strong></p>
-    <p>Kerala, long celebrated for its high literacy rate and progressive educational model, is now confronting a new challenge — the digital divide. While the state government has launched ambitious initiatives to introduce smart classrooms and digital learning tools across schools, significant disparities remain between urban and rural areas.</p>
-    <p>In major cities like Thiruvananthapuram, Kochi, and Kozhikode, schools have successfully integrated technology into their curricula. Students have access to tablets, interactive whiteboards, and high-speed internet, enabling a more engaging and modern learning experience. However, in remote villages and economically disadvantaged regions, many schools still lack basic digital infrastructure.</p>
-    <p>Teachers in rural areas report that inadequate internet connectivity, power outages, and lack of training in digital pedagogy are major obstacles. Additionally, many students from low-income families do not have personal devices, making it difficult for them to participate in online learning activities.</p>
-    <p>Education experts have called on the government to bridge this gap by investing in rural digital infrastructure, providing affordable devices to students, and conducting comprehensive training programs for teachers. They emphasize that without addressing these disparities, Kerala risks creating a two-tier education system that could undermine its reputation as a leader in education.</p>
-    <p>The state education minister has acknowledged these concerns and announced plans to expand digital literacy programs and improve connectivity in underserved areas. However, stakeholders stress that sustained effort and significant funding will be required to truly democratize digital education across Kerala.</p>
-  </div>
-);
-
-// Fashion Category Page
 const FashionPage = () => (
-  <div className="page-content active">
-    <h2>🎬 Fashion & Entertainment Category</h2>
-    <p>Welcome to the Fashion & Entertainment section. Click on articles from the home page or navigation to read full stories.</p>
-  </div>
+  <div className="category-page">
+    <h2>🎬 Fashion & Entertainment</h2>
+    <p>Welcome to the Fashion & Entertainment section. Discover the latest in cinema, fashion, and culture.</p>
+  </div>
 );
 
-// Fashion Article Page
+// Article Pages
+const PoliticsArticle = ({ setCurrentPage }) => (
+  <article className="article-page">
+    <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
+    <span className="category-badge politics">Politics</span>
+    <h1>Political Tensions Rise in Kerala Ahead of Local Body Elections</h1>
+    <div className="article-meta">
+      <span>📍 Thiruvananthapuram</span>
+      <span>📅 October 18, 2025</span>
+    </div>
+    <img src={politicsSecondaryImg} alt="Political Rally" className="article-image" />
+    
+    <div className="article-content">
+      <p className="lead">As Kerala gears up for the upcoming local body elections, the political atmosphere in the state has grown increasingly charged.</p>
+      
+      <p>The major political parties — the Communist Party of India (Marxist)-led Left Democratic Front (LDF), the Indian National Congress-led United Democratic Front (UDF), and the Bharatiya Janata Party (BJP) — are all vying for control of the state's grassroots governance structures.</p>
+      
+      <p>The LDF, which currently holds power in the state government, is seeking to maintain its dominance in local bodies, while the UDF aims to reclaim lost ground. The BJP, though traditionally a minor player in Kerala politics, has been making inroads and hopes to expand its footprint at the local level.</p>
+      
+      <p>Campaign rallies, political debates, and door-to-door canvassing have intensified across the state. Key issues dominating the discourse include unemployment, development projects, healthcare infrastructure, and the management of natural resources.</p>
+      
+      <p>Political analysts suggest that these elections will serve as a crucial indicator of public sentiment ahead of the next state assembly elections. With all parties deploying their top leaders and strategists, the battle for Kerala's local bodies promises to be fiercely contested.</p>
+    </div>
+  </article>
+);
+
+const SportsArticle = ({ setCurrentPage }) => (
+  <article className="article-page">
+    <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
+    <span className="category-badge sports">Sports</span>
+    <h1>Kohli and Rohit Return to ODI Squad Against Australia: Team India Sets Eyes on 2027 World Cup</h1>
+    <div className="article-meta">
+      <span>📍 Mumbai</span>
+      <span>📅 October 18, 2025</span>
+    </div>
+    <img src={sportsFeaturedImg} alt="Virat Kohli and Rohit Sharma" className="article-image" />
+    
+    <div className="article-content">
+      <p className="lead">In a major development that has delighted cricket fans across the nation, Virat Kohli and Rohit Sharma have been named in India's ODI squad for the upcoming series against Australia.</p>
+      
+      <p>The Board of Control for Cricket in India (BCCI) announced the squad today, with Rohit Sharma retaining the captaincy and Virat Kohli returning to the middle order. The duo, who have been instrumental in India's success in limited-overs cricket over the past decade, bring a wealth of experience and leadership to the team.</p>
+      
+      <p>The five-match ODI series against Australia is scheduled to begin next month and will serve as a crucial testing ground for India's World Cup aspirations. The team management has indicated that they will be experimenting with different combinations while ensuring that the core group of experienced players remains intact.</p>
+      
+      <p>Young talents such as Shubman Gill, Yashasvi Jaiswal, and Rinku Singh have also been included in the squad, signaling a blend of youth and experience. The selectors have made it clear that the focus is on building a balanced team capable of performing under pressure on the global stage.</p>
+      
+      <p>Cricket experts believe that the return of Kohli and Rohit adds immense value to the squad, not just in terms of their batting prowess but also their ability to mentor younger players. With the 2027 World Cup on the horizon, all eyes will be on how this team shapes up in the coming months.</p>
+    </div>
+  </article>
+);
+
+const EducationArticle = ({ setCurrentPage }) => (
+  <article className="article-page">
+    <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
+    <span className="category-badge education">Education</span>
+    <h1>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h1>
+    <div className="article-meta">
+      <span>📍 Thiruvananthapuram</span>
+      <span>📅 October 18, 2025</span>
+    </div>
+    <img src={educationSecondaryImg} alt="Digital Classroom" className="article-image" />
+    
+    <div className="article-content">
+      <p className="lead">Kerala, long celebrated for its high literacy rate and progressive educational model, is now confronting a new challenge — the digital divide.</p>
+      
+      <p>While the state government has launched ambitious initiatives to introduce smart classrooms and digital learning tools across schools, significant disparities remain between urban and rural areas.</p>
+      
+      <p>In major cities like Thiruvananthapuram, Kochi, and Kozhikode, schools have successfully integrated technology into their curricula. Students have access to tablets, interactive whiteboards, and high-speed internet, enabling a more engaging and modern learning experience. However, in remote villages and economically disadvantaged regions, many schools still lack basic digital infrastructure.</p>
+      
+      <p>Teachers in rural areas report that inadequate internet connectivity, power outages, and lack of training in digital pedagogy are major obstacles. Additionally, many students from low-income families do not have personal devices, making it difficult for them to participate in online learning activities.</p>
+      
+      <p>Education experts have called on the government to bridge this gap by investing in rural digital infrastructure, providing affordable devices to students, and conducting comprehensive training programs for teachers. They emphasize that without addressing these disparities, Kerala risks creating a two-tier education system that could undermine its reputation as a leader in education.</p>
+      
+      <p>The state education minister has acknowledged these concerns and announced plans to expand digital literacy programs and improve connectivity in underserved areas. However, stakeholders stress that sustained effort and significant funding will be required to truly democratize digital education across Kerala.</p>
+    </div>
+  </article>
+);
+
 const FashionArticle = ({ setCurrentPage }) => (
-  <div className="page-content active">
-    <a href="#" className="back-button" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }}>← Back to Home</a>
-    <h2>🎬 Fashion & Entertainment: Malayalam Cinema</h2>
-    <img 
-      src={fashionOtherImg} 
-      alt="Prithviraj Sukumaran"
-      onError={(e) => e.target.src = 'https://via.placeholder.com/800x450?text=Prithviraj+Sukumaran'}
-    />
-    <div className="meta">Thiruvananthapuram, October 18, 2025</div>
-    <p><strong>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</strong></p>
-    <p>Malayalam cinema fans have reason to celebrate as Prithviraj Sukumaran makes his much-anticipated comeback with the high-budget thriller "Shadow Lines". Directed by acclaimed filmmaker Jeethu Joseph, the film promises to be a game-changer for the industry with its gripping storyline, stunning visuals, and stellar cast.</p>
-    <p>"Shadow Lines" follows the story of an intelligence officer who uncovers a dangerous conspiracy that threatens national security. The film has been shot across multiple international locations, including Dubai, London, and Bangkok, giving it a truly global appeal. Prithviraj, known for his intense performances and dedication to his craft, has reportedly undergone rigorous training for the action sequences.</p>
-    <p>The film's teaser, released last week, has already garnered millions of views and created a buzz on social media. Fans have praised the production quality and the film's ambitious scale, comparing it to some of the biggest blockbusters in Indian cinema.</p>
-    <p>In addition to Prithviraj, the film features a talented ensemble cast including Parvathy Thiruvothu, Indrajith Sukumaran, and Bollywood actor Manoj Bajpayee in a pivotal role. The music, composed by Sushin Shyam, has also received widespread acclaim.</p>
-    <p>"Shadow Lines" is set to release in theaters nationwide next month, and industry insiders predict it could be one of the highest-grossing Malayalam films of the year. With its compelling narrative and top-notch production values, the film is expected to appeal to audiences beyond Kerala and establish Malayalam cinema as a major force in Indian filmmaking.</p>
-  </div>
+  <article className="article-page">
+    <button className="back-button" onClick={() => setCurrentPage('home')}>← Back to Home</button>
+    <span className="category-badge fashion">Entertainment</span>
+    <h1>Malayalam Star Prithviraj Returns with Big-Budget Thriller "Shadow Lines"</h1>
+    <div className="article-meta">
+      <span>📍 Thiruvananthapuram</span>
+      <span>📅 October 18, 2025</span>
+    </div>
+    <img src={fashionOtherImg} alt="Prithviraj Sukumaran" className="article-image" />
+    
+    <div className="article-content">
+      <p className="lead">Malayalam cinema fans have reason to celebrate as Prithviraj Sukumaran makes his much-anticipated comeback with the high-budget thriller "Shadow Lines".</p>
+      
+      <p>Directed by acclaimed filmmaker Jeethu Joseph, the film promises to be a game-changer for the industry with its gripping storyline, stunning visuals, and stellar cast.</p>
+      
+      <p>"Shadow Lines" follows the story of an intelligence officer who uncovers a dangerous conspiracy that threatens national security. The film has been shot across multiple international locations, including Dubai, London, and Bangkok, giving it a truly global appeal. Prithviraj, known for his intense performances and dedication to his craft, has reportedly undergone rigorous training for the action sequences.</p>
+      
+      <p>The film's teaser, released last week, has already garnered millions of views and created a buzz on social media. Fans have praised the production quality and the film's ambitious scale, comparing it to some of the biggest blockbusters in Indian cinema.</p>
+      
+      <p>In addition to Prithviraj, the film features a talented ensemble cast including Parvathy Thiruvothu, Indrajith Sukumaran, and Bollywood actor Manoj Bajpayee in a pivotal role. The music, composed by Sushin Shyam, has also received widespread acclaim.</p>
+      
+      <p>"Shadow Lines" is set to release in theaters nationwide next month, and industry insiders predict it could be one of the highest-grossing Malayalam films of the year. With its compelling narrative and top-notch production values, the film is expected to appeal to audiences beyond Kerala and establish Malayalam cinema as a major force in Indian filmmaking.</p>
+    </div>
+  </article>
 );
 
 // Footer Component
 const Footer = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    message: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simple client-side validation check before submission status change
-    if (formData.firstName.trim() && formData.lastName.trim() && formData.message.trim()) {
-        setSubmitted(true);
-        setTimeout(() => {
-          setSubmitted(false);
-          setFormData({ firstName: '', lastName: '', message: '' });
-        }, 3000);
-    } else {
-        alert("Please fill in all fields.");
-    }
-  };
-  
-  return (
-    <div className="footer-section">
-      <div className="footer-content">
-        <div className="about-text">
-          <h2>About TRACK NEWS</h2>
-          <p>TRACK NEWS is a website designed to submit as a part of **Production portfolio of MIMC-020**. It is created by **[Your Name]**, student of MAJMC. In this website, there are five webpages related to sports, politics, education, fashion, and the home page.</p>
-        </div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.firstName.trim() && formData.lastName.trim() && formData.message.trim()) {
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ firstName: '', lastName: '', message: '' });
+      }, 3000);
+    } else {
+      alert("Please fill in all fields.");
+    }
+  };
+  
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-about">
+          <h2>About TRACK NEWS</h2>
+          <p>TRACK NEWS is a comprehensive news platform dedicated to bringing you the latest stories from Kerala and across India. Covering politics, sports, education, and entertainment, we strive to keep you informed and engaged.</p>
+          <p className="credit">Created as part of Production Portfolio - MIMC-020 | MAJMC Student Project</p>
+        </div>
 
-        <div className="contact-form-container">
-          <div> 
-            <input 
-              type="text" 
-              value={formData.firstName}
-              onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-              placeholder="First name:" 
-              required 
-            />
-            <input 
-              type="text" 
-              value={formData.lastName}
-              onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-              placeholder="Last name:" 
-              required 
-            />
-            <textarea 
-              value={formData.message}
-              onChange={(e) => setFormData({...formData, message: e.target.value})}
-              placeholder="leave your message" 
-              required
-            />
-            <button onClick={handleSubmit} className="submit-btn">
-              {submitted ? 'Submitted!' : 'Submit'}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+        <div className="footer-form">
+          <h3>Get in Touch</h3>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              value={formData.firstName}
+              onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+              placeholder="First name" 
+              required 
+            />
+            <input 
+              type="text" 
+              value={formData.lastName}
+              onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+              placeholder="Last name" 
+              required 
+            />
+            <textarea 
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              placeholder="Your message" 
+              rows="4"
+              required
+            />
+            <button type="submit" className="submit-btn">
+              {submitted ? '✓ Submitted!' : 'Submit'}
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div className="footer-bottom">
+        <p>&copy; 2025 TRACK NEWS. All rights reserved.</p>
+      </div>
+    </footer>
+  );
 };
 
 // Main App Component
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState('home');
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
 
-  const renderPage = () => {
-    switch(currentPage) {
-      case 'home':
-        return <HomePage setCurrentPage={setCurrentPage} />;
-      case 'politics':
-        return <PoliticsPage />;
-      case 'politics-article':
-        return <PoliticsArticle setCurrentPage={setCurrentPage} />;
-      case 'sports':
-        return <SportsPage />;
-      case 'sports-article':
-        return <SportsArticle setCurrentPage={setCurrentPage} />;
-      case 'education':
-        return <EducationPage />;
-      case 'education-article':
-        return <EducationArticle setCurrentPage={setCurrentPage} />;
-      case 'fashion':
-        return <FashionPage />;
-      case 'fashion-article':
-        return <FashionArticle setCurrentPage={setCurrentPage} />;
-      default:
-        return <HomePage setCurrentPage={setCurrentPage} />;
-    }
-  };
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'home': return <HomePage setCurrentPage={setCurrentPage} />;
+      case 'politics': return <PoliticsPage />;
+      case 'politics-article': return <PoliticsArticle setCurrentPage={setCurrentPage} />;
+      case 'sports': return <SportsPage />;
+      case 'sports-article': return <SportsArticle setCurrentPage={setCurrentPage} />;
+      case 'education': return <EducationPage />;
+      case 'education-article': return <EducationArticle setCurrentPage={setCurrentPage} />;
+      case 'fashion': return <FashionPage />;
+      case 'fashion-article': return <FashionArticle setCurrentPage={setCurrentPage} />;
+      default: return <HomePage setCurrentPage={setCurrentPage} />;
+    }
+  };
 
-  return (
-    <div>
-      <style>{`
-        /* --- Global Styles: (Kept Compact from previous revision) --- */
-        body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          background-color: #f4f4f4;
-          color: #333;
-        }
-
-        .header {
-          background-color: #8b0000;
-          color: white;
-          padding: 10px 0;
-          text-align: center;
-          cursor: pointer;
-        }
-
-        .header h1 {
-          margin: 0;
-          font-size: 36px;
-          letter-spacing: 3px;
-          font-weight: 900;
-        }
-
-        .nav-bar {
-          background-color: #333;
-          color: white;
-          text-align: center;
-          padding: 5px 0;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-bar a {
-          color: white;
-          text-decoration: none;
-          padding: 8px 15px;
-          display: inline-block;
-          transition: background-color 0.3s, color 0.3s;
-        }
-
-        .nav-bar a:hover {
-          background-color: #8b0000;
-          color: #fff;
-        }
-
-        .container {
-          width: 98%;
-          margin: 10px auto;
-          max-width: 1300px;
-          min-height: 80vh;
-        }
-
-        /* --- Content & Article Page Styles (General) --- */
-        .page-content {
-          padding: 15px;
-          background-color: white;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .page-content h2 {
-          color: #8b0000;
-          border-bottom: 2px solid #ccc;
-          padding-bottom: 10px;
-          margin-bottom: 15px;
-          font-size: 1.7em;
-        }
-
-        .page-content .meta {
-          font-size: 0.9em;
-          color: #777;
-          margin-bottom: 10px;
-          font-style: italic;
-        }
-
-        .page-content p {
-          line-height: 1.6;
-          margin-bottom: 15px;
-          text-align: justify;
-        }
-
-        .page-content img {
-          width: 100%;
-          height: auto;
-          max-height: 350px;
-          object-fit: cover;
-          margin: 10px 0;
-          border-radius: 5px;
-          object-position: top; 
-        }
-
-        .back-button {
-          display: inline-block;
-          margin-bottom: 15px;
-          padding: 8px 15px;
-          background-color: #8b0000;
-          color: white;
-          text-decoration: none;
-          border-radius: 5px;
-          font-weight: bold;
-        }
-
-        /* --- HOME PAGE LAYOUT OPTIMIZED for SIDEBAR --- */
-
-        #home-page {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 20px; /* Space between main content and sidebar */
-        }
-
-        /* ⭐️ MAIN CONTENT COLUMN (Featured News + Videos) */
-        .main-column {
-            flex: 3; /* Takes approx. 70% of the space */
-            min-width: 65%;
-        }
-
-        /* ⭐️ SIDEBAR COLUMN (Secondary + Other News) */
-        .sidebar-column {
-            flex: 1; /* Takes approx. 30% of the space */
-            min-width: 30%;
-            display: flex;
-            flex-direction: column; /* Stacks cards vertically */
-            gap: 20px; /* Spacing between the secondary and other news sections */
-        }
-
-        /* --- Featured Card (Full Width within Main Column) --- */
-        .main-featured-card {
-          width: 100%;
-          background-color: white;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-          overflow: hidden;
-          cursor: pointer;
-          transition: transform 0.3s;
-          border-radius: 6px;
-        }
-
-        .main-featured-card:hover {
-          transform: translateY(-4px);
-        }
-
-        .main-featured-card img {
-          width: 100%;
-          height: 350px; /* Increased height for better visual impact in the main spot */
-          object-fit: cover;
-          margin: 0;
-          object-position: top;
-        }
-
-        .main-featured-card .card-content {
-          padding: 15px;
-        }
-
-        .main-featured-card .card-content h3 {
-          color: #8b0000;
-          font-size: 1.8em; 
-          margin-top: 0;
-          line-height: 1.2;
-        }
-
-        /* --- Secondary News Cards (Stacked in Sidebar) --- */
-
-        /* We redefine the secondary row to stack the two cards vertically in the sidebar */
-        .secondary-news-row {
-          display: flex;
-          flex-direction: column; /* Stacking them vertically */
-          gap: 15px;
-          width: 100%; 
-        }
-
-        .secondary-news-card {
-          background-color: white;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s;
-          overflow: hidden;
-          cursor: pointer;
-          border-radius: 6px;
-        }
-
-        .secondary-news-card:hover {
-          transform: translateY(-3px);
-        }
-
-        /* Use small images for sidebar list items */
-        .secondary-news-card img {
-          width: 100%; 
-          height: 120px; /* Small, fixed height for sidebar efficiency */
-          object-fit: cover;
-          margin: 0;
-          object-position: center;
-        }
-
-        .secondary-news-card .card-content {
-            padding: 10px;
-        }
-
-        .secondary-news-card .card-content h3 {
-            color: #8b0000;
-            margin-top: 0;
-            font-size: 1.1em;
-            line-height: 1.3;
-            min-height: 0; 
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2; /* Limit to 2 lines for concise headlines */
-            -webkit-box-orient: vertical;
-        }
-        
-        .secondary-news-card .card-content a {
-            display: inline-block;
-            margin-top: 5px;
-            font-size: 0.85em;
+  return (
+    <div className="app">
+      <style>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
         }
 
-
-        /* --- Other News Grid (Single Card in Sidebar) --- */
-        .other-news-grid {
-          width: 100%;
-          display: flex; /* Now just contains the one card */
-          margin-top: 0;
-        }
-
-        .other-news-card {
-          width: 100%;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s;
-          overflow: hidden;
-          cursor: pointer;
-          border-radius: 6px;
-          background-color: white;
-        }
-
-        .other-news-card:hover {
-          transform: translateY(-3px);
-        }
-
-        .other-news-card img {
-          width: 100%;
-          height: 180px;
-          object-fit: cover;
-          margin: 0;
-          object-position: center;
-        }
-        
-        /* GENERAL CARD CONTENT (Adjusted for side-by-side view) */
-        .card-content h3 {
-          /* Resetting the vertical height limitation applied to main-featured-card */
-          min-height: auto; 
-          -webkit-line-clamp: unset;
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          background-color: #f5f5f5;
+          color: #333;
+          line-height: 1.6;
         }
 
-
-        /* --- Video Section (Remains full width of Main Column) --- */
-
-        .video-scroll-section {
-          margin-top: 25px;
-          padding: 15px;
-          background-color: #e9e9e9;
-          border-radius: 6px;
-          width: 100%; /* Important: Takes up 100% of the .main-column */
-        }
-
-        /* --- Footer and Media Queries (Kept as previously optimized) --- */
-
-        /* --- Footer --- */
-        .footer-section {
-          background-color: #1a1a1a;
-          color: white;
-          padding: 30px 0;
-          margin-top: 25px;
-        }
-        
-        .footer-content {
-          width: 95%;
-          margin: 0 auto;
-          max-width: 1200px;
+        .app {
+          min-height: 100vh;
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+          background: linear-gradient(135deg, #8b0000 0%, #a00000 100%);
+          color: white;
+          padding: 20px;
+          text-align: center;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+          font-size: 42px;
+          font-weight: 900;
+          letter-spacing: 4px;
+          margin-bottom: 5px;
+        }
+
+        .header .tagline {
+          font-size: 14px;
+          opacity: 0.9;
+          letter-spacing: 1px;
+        }
+
+        /* Navigation Styles */
+        .nav-bar {
+          background-color: #1a1a1a;
+          display: flex;
+          justify-content: center;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+
+        .nav-bar a {
+          color: white;
+          text-decoration: none;
+          padding: 15px 25px;
+          display: inline-block;
+          transition: all 0.3s ease;
+          font-weight: 500;
+          border-bottom: 3px solid transparent;
+        }
+
+        .nav-bar a:hover,
+        .nav-bar a.active {
+          background-color: #8b0000;
+          border-bottom-color: white;
+        }
+
+        /* Home Page Layout */
+        .home-page {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 30px 20px;
+          display: grid;
+          grid-template-columns: 2fr 1fr;
           gap: 30px;
         }
 
-        .about-text {
-            flex: 2;
+        /* Featured Card */
+        .featured-card {
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          cursor: pointer;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .about-text h2 {
-            font-family: 'Times New Roman', serif; 
-            font-style: italic;
-            font-size: 32px;
-            color: #ccc; 
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
+        .featured-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.15);
         }
 
-        .about-text p {
-            font-size: 1em;
-            line-height: 1.7;
+        .image-wrapper {
+          position: relative;
+          overflow: hidden;
         }
 
-        .contact-form-container {
-            flex: 1;
-            padding-top: 10px;
+        .featured-card img {
+          width: 100%;
+          height: 400px;
+          object-fit: cover;
+          transition: transform 0.3s ease;
         }
 
-        .contact-form-container input[type="text"],
-        .contact-form-container textarea {
-            width: 100%;
-            padding: 12px; 
-            margin-bottom: 15px; 
-            border: 1px solid #444;
-            background-color: #333;
-            color: white;
-            box-sizing: border-box;
-            border-radius: 4px;
+        .featured-card:hover img {
+          transform: scale(1.05);
         }
 
-        .contact-form-container textarea {
-            height: 100px;
-            resize: vertical;
+        .category-badge {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: white;
+        }
+
+        .category-badge.sports { background-color: #ff6b35; }
+        .category-badge.politics { background-color: #1a5490; }
+        .category-badge.education { background-color: #2d8016; }
+        .category-badge.fashion { background-color: #8b2d6b; }
+
+        .card-content {
+          padding: 25px;
+        }
+
+        .featured-card h2 {
+          color: #1a1a1a;
+          font-size: 28px;
+          line-height: 1.3;
+          margin-bottom: 15px;
+        }
+
+        .excerpt {
+          color: #666;
+          font-size: 16px;
+          margin-bottom: 15px;
+          line-height: 1.6;
+        }
+
+        .read-more {
+          background-color: #8b0000;
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 6px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .read-more:hover {
+          background-color: #a00000;
+        }
+
+        /* Video Section */
+        .video-section {
+          background: white;
+          border-radius: 12px;
+          padding: 25px;
+          margin-top: 30px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .video-section h2 {
+          color: #1a1a1a;
+          margin-bottom: 20px;
+          font-size: 24px;
+        }
+
+        .video-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .video-card iframe {
+          width: 100%;
+          height: 200px;
+          border-radius: 8px;
+        }
+
+        .video-title {
+          margin-top: 10px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        /* Sidebar */
+        .sidebar {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+        }
+
+        .sidebar-section {
+          background: white;
+          border-radius: 12px;
+          padding: 20px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+          color: #8b0000;
+          font-size: 20px;
+          margin-bottom: 15px;
+          padding-bottom: 10px;
+          border-bottom: 2px solid #f0f0f0;
+        }
+
+        .sidebar-card {
+          background: #f9f9f9;
+          border-radius: 8px;
+          overflow: hidden;
+          margin-bottom: 15px;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
+
+        .sidebar-card:last-child {
+          margin-bottom: 0;
+        }
+
+        .sidebar-card:hover {
+          transform: translateX(5px);
+        }
+
+        .sidebar-card img {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+        }
+
+        .sidebar-content {
+          padding: 15px;
+        }
+
+        .sidebar-content h4 {
+          color: #1a1a1a;
+          font-size: 16px;
+          line-height: 1.4;
+          margin: 10px 0;
+        }
+
+        .read-more-small {
+          background: none;
+          border: none;
+          color: #8b0000;
+          font-weight: 600;
+          cursor: pointer;
+          padding: 0;
+          font-size: 14px;
+        }
+
+        /* Category Pages */
+        .category-page {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 40px 20px;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .category-page h2 {
+          color: #8b0000;
+          font-size: 36px;
+          margin-bottom: 15px;
+        }
+
+        .category-page p {
+          font-size: 18px;
+          color: #666;
+        }
+
+        /* Article Pages */
+        .article-page {
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 40px 20px;
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .back-button {
+          display: inline-block;
+          margin-bottom: 20px;
+          padding: 10px 20px;
+          background-color: #8b0000;
+          color: white;
+          text-decoration: none;
+          border-radius: 6px;
+          font-weight: 600;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+          background-color: #a00000;
+        }
+
+        .article-page h1 {
+          color: #1a1a1a;
+          font-size: 36px;
+          line-height: 1.3;
+          margin: 15px 0 20px;
+        }
+
+        .article-meta {
+          display: flex;
+          gap: 20px;
+          color: #888;
+          font-size: 14px;
+          margin-bottom: 25px;
+          padding-bottom: 15px;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .article-image {
+          width: 100%;
+          height: 450px;
+          object-fit: cover;
+          border-radius: 8px;
+          margin-bottom: 30px;
+        }
+
+        .article-content {
+          font-size: 18px;
+          line-height: 1.8;
+          color: #333;
+        }
+
+        .article-content .lead {
+          font-size: 22px;
+          font-weight: 500;
+          color: #1a1a1a;
+          margin-bottom: 25px;
+        }
+
+        .article-content p {
+          margin-bottom: 20px;
+          text-align: justify;
+        }
+
+        /* Footer */
+        .footer {
+          background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+          color: white;
+          margin-top: auto;
+          padding: 50px 0 0;
+        }
+
+        .footer-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px 40px;
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 50px;
+        }
+
+        .footer-about h2 {
+          font-size: 28px;
+          margin-bottom: 15px;
+          color: #fff;
+        }
+
+        .footer-about p {
+          line-height: 1.8;
+          color: #ccc;
+          margin-bottom: 15px;
+        }
+
+        .credit {
+          font-size: 14px;
+          font-style: italic;
+          color: #999;
+        }
+
+        .footer-form h3 {
+          font-size: 22px;
+          margin-bottom: 20px;
+        }
+
+        .footer-form input,
+        .footer-form textarea {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 15px;
+          border: 1px solid #444;
+          background-color: #2a2a2a;
+          color: white;
+          border-radius: 6px;
+          font-family: inherit;
+          font-size: 14px;
+        }
+
+        .footer-form input:focus,
+        .footer-form textarea:focus {
+          outline: none;
+          border-color: #8b0000;
+        }
+
+        .footer-form textarea {
+          resize: vertical;
+          min-height: 100px;
         }
 
         .submit-btn {
-            background-color: #8b0000;
-            color: white;
-            padding: 12px 15px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            display: block;
-            width: 100%;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+          width: 100%;
+          padding: 12px;
+          background-color: #8b0000;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          font-weight: 600;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
         }
 
         .submit-btn:hover {
-            background-color: #a00000;
+          background-color: #a00000;
         }
 
+        .footer-bottom {
+          background-color: #0f0f0f;
+          text-align: center;
+          padding: 20px;
+          color: #888;
+          font-size: 14px;
+        }
 
-        /* --- Media Queries (Responsiveness) --- */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+          .home-page {
+            grid-template-columns: 1fr;
+          }
 
-        /* Tablet/Small Desktop: Change featured image height slightly */
-        @media (max-width: 1024px) {
-            .main-featured-card img {
-                height: 280px;
-            }
-        }
+          .video-grid {
+            grid-template-columns: 1fr;
+          }
 
-        /* Mobile Layout: Stack everything vertically */
-        @media (max-width: 768px) {
-            #home-page {
-                flex-direction: column; /* Stacks main and sidebar columns */
-                gap: 15px;
-            }
-            .main-column, .sidebar-column {
-                min-width: 100%;
-                flex: auto;
-            }
-            
-            .secondary-news-row {
-                flex-direction: column;
-                gap: 10px;
-            }
+          .featured-card img {
+            height: 300px;
+          }
+        }
 
-            .main-featured-card img {
-                height: 200px;
-            }
-            .secondary-news-card img,
-            .other-news-card img {
-                height: 150px;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-        }
-      `}</style>
+        @media (max-width: 768px) {
+          .header h1 {
+            font-size: 32px;
+            letter-spacing: 2px;
+          }
 
-      <Header setCurrentPage={setCurrentPage} />
-      <NavBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      
-      <div className="container">
-        {renderPage()}
-      </div>
+          .nav-bar {
+            flex-wrap: wrap;
+          }
 
-      <Footer />
-    </div>
-  );
+          .nav-bar a {
+            padding: 12px 15px;
+            font-size: 14px;
+          }
+
+          .home-page {
+            padding: 20px 15px;
+          }
+
+          .featured-card h2 {
+            font-size: 22px;
+          }
+
+          .featured-card img,
+          .article-image {
+            height: 250px;
+          }
+
+          .article-page h1 {
+            font-size: 28px;
+          }
+
+          .article-content {
+            font-size: 16px;
+          }
+
+          .footer-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+
+          .video-card iframe {
+            height: 180px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .header h1 {
+            font-size: 24px;
+          }
+
+          .header .tagline {
+            font-size: 12px;
+          }
+
+          .nav-bar a {
+            padding: 10px 12px;
+            font-size: 13px;
+          }
+
+          .featured-card h2 {
+            font-size: 20px;
+          }
+
+          .card-content {
+            padding: 15px;
+          }
+
+          .article-page {
+            padding: 20px 15px;
+          }
+
+          .article-page h1 {
+            font-size: 24px;
+          }
+        }
+      `}</style>
+
+      <Header setCurrentPage={setCurrentPage} />
+      <NavBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      
+      <main style={{ flex: 1 }}>
+        {renderPage()}
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
