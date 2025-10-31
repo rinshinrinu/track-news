@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// Placeholder images (using via.placeholder.com as fallback)
+// Import images from assets folder
 import sportsFeaturedImg from './assets/images/sports-featured.jpg';
 import politicsSecondaryImg from './assets/images/politics-secondary.jpg';
 import educationSecondaryImg from './assets/images/education-secondary.jpg';
@@ -66,10 +66,38 @@ const HomePage = ({ setCurrentPage }) => {
           </div>
         </article>
 
-        {/* Video Section */}
+        {/* Top Stories Section - Horizontal */}
+        <section className="top-stories-section">
+          <h2>📰 Top Stories</h2>
+          <div className="top-stories-scroll">
+            <article className="horizontal-card" onClick={() => setCurrentPage('politics-article')}>
+              <img src={politicsSecondaryImg} alt="Kerala Elections" />
+              <div className="horizontal-content">
+                <span className="category-badge politics">Politics</span>
+                <h4>Political Tensions Rise in Kerala Ahead of Local Body Elections</h4>
+                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>
+                  Read more →
+                </button>
+              </div>
+            </article>
+
+            <article className="horizontal-card" onClick={() => setCurrentPage('education-article')}>
+              <img src={educationSecondaryImg} alt="Smart Classroom" />
+              <div className="horizontal-content">
+                <span className="category-badge education">Education</span>
+                <h4>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h4>
+                <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
+                  Read more →
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* Video Section - Horizontal Scrollable */}
         <section className="video-section">
           <h2>🎬 Video Stories</h2>
-          <div className="video-grid">
+          <div className="video-scroll">
             <div className="video-card">
               <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="News Video 1" frameBorder="0" allowFullScreen></iframe>
               <p className="video-title">Breaking News Update</p>
@@ -90,39 +118,10 @@ const HomePage = ({ setCurrentPage }) => {
         </section>
       </div>
       
-      {/* Sidebar */}
+      {/* Sidebar - Latest News */}
       <aside className="sidebar">
-        
-        {/* Secondary News */}
         <div className="sidebar-section">
-          <h3 className="section-title">Trending Stories</h3>
-          
-          <article className="sidebar-card" onClick={() => setCurrentPage('politics-article')}>
-            <img src={politicsSecondaryImg} alt="Kerala Elections" />
-            <div className="sidebar-content">
-              <span className="category-badge politics">Politics</span>
-              <h4>Political Tensions Rise in Kerala Ahead of Local Body Elections</h4>
-              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('politics-article'); }}>
-                Read more →
-              </button>
-            </div>
-          </article>
-
-          <article className="sidebar-card" onClick={() => setCurrentPage('education-article')}>
-            <img src={educationSecondaryImg} alt="Smart Classroom" />
-            <div className="sidebar-content">
-              <span className="category-badge education">Education</span>
-              <h4>Kerala Schools Face Digital Divide Despite Smart Classroom Revolution</h4>
-              <button className="read-more-small" onClick={(e) => { e.stopPropagation(); setCurrentPage('education-article'); }}>
-                Read more →
-              </button>
-            </div>
-          </article>
-        </div>
-
-        {/* Entertainment News */}
-        <div className="sidebar-section">
-          <h3 className="section-title">Entertainment</h3>
+          <h3 className="section-title">Latest News</h3>
           
           <article className="sidebar-card" onClick={() => setCurrentPage('fashion-article')}>
             <img src={fashionOtherImg} alt="Prithviraj Shadow Lines" />
@@ -472,6 +471,7 @@ export default function App() {
           width: 100%;
           height: 400px;
           object-fit: cover;
+          object-position: center;
           transition: transform 0.3s ease;
         }
 
