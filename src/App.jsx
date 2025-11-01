@@ -330,7 +330,7 @@ const Footer = () => {
         <div className="footer-about">
           <h2>About TRACK NEWS</h2>
           <p>TRACK NEWS is a comprehensive news platform dedicated to bringing you the latest stories from Kerala and across India. Covering politics, sports, education, and entertainment, we strive to keep you informed and engaged.</p>
-          <p className="credit">Created as part of Production Portfolio - MJML-020 | MAJMC Student Project</p>
+          <p className="credit">Created as part of Production Portfolio - MJML-120 | MAJMC Student Project</p>
         </div>
 
         <div className="footer-form">
